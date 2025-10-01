@@ -1,13 +1,13 @@
-package org.example.api;
+package org.example.apimongo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApiApplication {
+public class ApiMongoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApiApplication.class, args);
+		SpringApplication.run(ApiMongoApplication.class, args);
 	}
 
 }
