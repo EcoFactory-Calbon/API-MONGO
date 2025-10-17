@@ -2,54 +2,67 @@ package org.example.apimongo.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "formularios")
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Document(collection = "formulario")
 public class Formulario {
     @Id
-    private Integer id;
-    private Integer resposta;
-    private String nivelEmissao;
-    private Integer idPergunta;
+    private String id; // _id do MongoDB é uma String
 
+    @Field("numero_cracha")
+    private String numeroCracha;
+
+    @Field("data_resposta")
+    private LocalDateTime dataResposta;
+
+    @Field("nivel_emissao")
+    private Double nivelEmissao;
+
+    private List<RespostaItem> respostas; // Lista de objetos aninhados
 
     public Formulario() {}
 
-    public Formulario(Integer id, Integer resposta, String nivelEmissao, Integer idPergunta) {
-        this.id = id;
-        this.resposta = resposta;
-        this.nivelEmissao = nivelEmissao;
-        this.idPergunta = idPergunta;
-    }
-
-    public Integer getId() {
+    // Getters e Setters
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Integer getResposta() {
-        return resposta;
+    public String getNumeroCracha() {
+        return numeroCracha;
     }
 
-    public void setResposta(Integer resposta) {
-        this.resposta = resposta;
+    public void setNumeroCracha(String numeroCracha) {
+        this.numeroCracha = numeroCracha;
     }
 
-    public String getNivelEmissao() {
+    public LocalDateTime getDataResposta() {
+        return dataResposta;
+    }
+
+    public void setDataResposta(LocalDateTime dataResposta) {
+        this.dataResposta = dataResposta;
+    }
+
+    public Double getNivelEmissao() {
         return nivelEmissao;
     }
 
-    public void setNivelEmissao(String nivelEmissao) {
+    public void setNivelEmissao(Double nivelEmissao) {
         this.nivelEmissao = nivelEmissao;
     }
 
-    public Integer getIdPergunta() {
-        return idPergunta;
+    public List<RespostaItem> getRespostas() {
+        return respostas;
     }
 
-    public void setIdPergunta(Integer idPergunta) {
-        this.idPergunta = idPergunta;
+    public void setRespostas(List<RespostaItem> respostas) {
+        this.respostas = respostas;
     }
 }
