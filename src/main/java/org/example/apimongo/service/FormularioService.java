@@ -75,7 +75,7 @@ public class FormularioService {
         Formulario formulario = fromRequestDTO(requestDTO);
         formulario.setDataResposta(LocalDateTime.now());
         double nivelEmissaoCalculado = calculoCarbonoService.calcular(requestDTO.getRespostas());
-        formulario.setNivelEmissao(nivelEmissaoCalculado);
+        formulario.setNivelEmissao(nivelEmissaoCalculado/1000);
         Formulario savedFormulario = formularioRepository.save(formulario);
         return toResponseDTO(savedFormulario);
     }
