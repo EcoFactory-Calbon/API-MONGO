@@ -16,7 +16,7 @@ public class FormularioRequestDTO {
     @Schema(description = "Lista contendo os IDs da pergunta e da alternativa escolhida.")
     private List<RespostaItemDTO> respostas;
 
-    // Getters e Setters
+
     public String getNumeroCracha() {
         return numeroCracha;
     }

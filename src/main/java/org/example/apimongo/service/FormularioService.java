@@ -2,6 +2,7 @@ package org.example.apimongo.service;
 
 import org.example.apimongo.dto.FormularioRequestDTO;
 import org.example.apimongo.dto.FormularioResponseDTO;
+import org.example.apimongo.dto.PerguntaResponseDTO;
 import org.example.apimongo.dto.RespostaItemDTO;
 import org.example.apimongo.exception.FormularioNaoEncontradoException;
 import org.example.apimongo.exception.PerguntaNaoEncontradaException;
@@ -53,6 +54,7 @@ public class FormularioService {
         dto.setNumeroCracha(formulario.getNumeroCracha());
         dto.setDataResposta(formulario.getDataResposta());
         dto.setNivelEmissao(formulario.getNivelEmissao());
+        dto.setClassificacaoEmissao(formulario.getClassificacaoEmissao());
 
         List<RespostaItemDTO> respostasDTO = formulario.getRespostas().stream().map(item -> {
             RespostaItemDTO itemDTO = new RespostaItemDTO();
@@ -71,11 +73,19 @@ public class FormularioService {
                 .collect(Collectors.toList());
     }
 
+    public List<FormularioResponseDTO> buscarPorId(String id) {
+        return formularioRepository.findById(id)
+                .stream()
+                .map(this::toResponseDTO)
+                .collect(Collectors.toList());
+    }
+
     public FormularioResponseDTO inserirFormulario(FormularioRequestDTO requestDTO) {
         Formulario formulario = fromRequestDTO(requestDTO);
         formulario.setDataResposta(LocalDateTime.now());
         double nivelEmissaoCalculado = calculoCarbonoService.calcular(requestDTO.getRespostas());
         formulario.setNivelEmissao(nivelEmissaoCalculado/1000);
+        formulario.setClassificacaoEmissao(calculoCarbonoService.classificarEmissao(formulario.getNivelEmissao()));
         Formulario savedFormulario = formularioRepository.save(formulario);
         return toResponseDTO(savedFormulario);
     }

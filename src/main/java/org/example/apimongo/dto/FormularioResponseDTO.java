@@ -16,13 +16,15 @@ public class FormularioResponseDTO {
     @Schema(description = "Data e hora em que o formulário foi submetido.", example = "2025-10-17T08:30:00")
     private LocalDateTime dataResposta;
 
-    @Schema(description = "Pontuação calculada ou nível de emissão com base nas respostas.", example = "75.5")
+    @Schema(description = "Pontuação calculada ou nível de emissão com base nas respostas.", example = "4.7")
     private Double nivelEmissao;
+
+    @Schema(description = "Classificação do nível de emissão.", example = "Média")
+    private String classificacaoEmissao;
 
     @Schema(description = "Lista das respostas fornecidas pelo usuário.")
     private List<RespostaItemDTO> respostas;
 
-    // Construtor e Getters/Setters
     public FormularioResponseDTO() {}
 
     public String getId() {
@@ -55,6 +57,14 @@ public class FormularioResponseDTO {
 
     public void setNivelEmissao(Double nivelEmissao) {
         this.nivelEmissao = nivelEmissao;
+    }
+
+    public String getClassificacaoEmissao() {
+        return classificacaoEmissao;
+    }
+
+    public void setClassificacaoEmissao(String classificacaoEmissao) {
+        this.classificacaoEmissao = classificacaoEmissao;
     }
 
     public List<RespostaItemDTO> getRespostas() {

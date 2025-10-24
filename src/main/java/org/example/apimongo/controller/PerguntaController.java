@@ -27,6 +27,10 @@ public class PerguntaController implements PerguntaOpenApi{
         return ResponseEntity.ok(perguntas);
     }
 
+    @GetMapping("/buscarCategoria/{categoria}")
+    public ResponseEntity<List<PerguntaResponseDTO>> buscarCategorias(@PathVariable String categoria) {
+        return ResponseEntity.ok(perguntaService.buscarPorCategoria(categoria));
+    }
 
     @PostMapping("/inserir")
     public ResponseEntity<PerguntaResponseDTO> adicionarPergunta(@RequestBody @Valid PerguntaRequestDTO dto) {

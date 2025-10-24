@@ -40,6 +40,13 @@ public class PerguntaService {
                 .collect(Collectors.toList());
     }
 
+    public List<PerguntaResponseDTO> buscarPorCategoria(String categoria) {
+        return perguntaRepository.findByCategoria(categoria)
+                .stream()
+                .map(this::toResponseDTO)
+                .collect(Collectors.toList());
+    }
+
     public PerguntaResponseDTO inserirPergunta(PerguntaRequestDTO dto) {
         Pergunta novaPergunta = new Pergunta();
         novaPergunta.setCategoria(dto.getCategoria());
