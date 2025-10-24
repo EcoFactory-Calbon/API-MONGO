@@ -54,13 +54,12 @@ public class CalculoCarbonoService {
 
     private double getPesoPorCategoria(String categoria) {
         switch (categoria.toLowerCase()) {
-            case "transporte": return 1.5;
-            case "alimentação": return 1.2;
-            case "consumo": return 1.0;
-            case "energia": return 1.1;
-            case "conhecimento": return 0.5;
-            // Adicione outras categorias aqui...
-            default: return 1.0; // Peso padrão para categorias não listadas
+            case "transporte": return 1.2;
+            case "alimentação": return 0.9;
+            case "consumo": return 0.7;
+            case "energia": return 0.8;
+            case "conhecimento": return 0.2;
+            default: return 1.0;
         }
     }
 }
