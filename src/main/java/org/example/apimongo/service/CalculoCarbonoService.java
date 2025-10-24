@@ -22,18 +22,14 @@ public class CalculoCarbonoService {
         double emissaoTotal = 0.0;
 
         for (RespostaItemDTO respostaItem : respostas) {
-            // 1. Busca a pergunta no banco para obter a categoria
             Integer idPergunta = respostaItem.getIdPergunta();
             Pergunta pergunta = perguntaRepository.findById(idPergunta)
                     .orElseThrow(() -> new NoSuchElementException("Pergunta com ID " + idPergunta + " não encontrada."));
 
-            // 2. Obtém a pontuação baseada no valor da resposta (0-5)
             double pontuacaoBase = getPontuacaoPorResposta(respostaItem.getResposta());
 
-            // 3. Obtém o peso/multiplicador baseado na categoria da pergunta
             double pesoCategoria = getPesoPorCategoria(pergunta.getCategoria());
 
-            // 4. Calcula a emissão da resposta e soma ao total
             emissaoTotal += pontuacaoBase * pesoCategoria;
         }
 
@@ -60,6 +56,16 @@ public class CalculoCarbonoService {
             case "energia": return 0.8;
             case "conhecimento": return 0.2;
             default: return 1.0;
+        }
+    }
+
+    public String classificarEmissao(Double nivelEmissao) {
+        if (nivelEmissao <= 3.9) {
+            return "Baixa";
+        } else if (nivelEmissao <= 8.9) {
+            return "Média";
+        } else {
+            return "Alta";
         }
     }
 }

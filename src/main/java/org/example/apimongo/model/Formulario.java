@@ -10,7 +10,7 @@ import java.util.List;
 @Document(collection = "formulario")
 public class Formulario {
     @Id
-    private String id; // _id do MongoDB é uma String
+    private String id;
 
     @Field("numero_cracha")
     private String numeroCracha;
@@ -21,11 +21,14 @@ public class Formulario {
     @Field("nivel_emissao")
     private Double nivelEmissao;
 
-    private List<RespostaItem> respostas; // Lista de objetos aninhados
+    @Field("classificacao_emissao")
+    private String classificacaoEmissao;
+
+    private List<RespostaItem> respostas;
 
     public Formulario() {}
 
-    // Getters e Setters
+
     public String getId() {
         return id;
     }
@@ -56,6 +59,14 @@ public class Formulario {
 
     public void setNivelEmissao(Double nivelEmissao) {
         this.nivelEmissao = nivelEmissao;
+    }
+
+    public String getClassificacaoEmissao() {
+        return classificacaoEmissao;
+    }
+
+    public void setClassificacaoEmissao(String classificacaoEmissao) {
+        this.classificacaoEmissao = classificacaoEmissao;
     }
 
     public List<RespostaItem> getRespostas() {
