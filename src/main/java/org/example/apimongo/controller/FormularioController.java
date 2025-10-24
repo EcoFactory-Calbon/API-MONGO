@@ -28,9 +28,10 @@ public class FormularioController implements FormularioOpenApi {
         return ResponseEntity.ok(formularios);
     }
 
-    @GetMapping("/buscarId/{id}")
-    public ResponseEntity<List<FormularioResponseDTO>> buscarId(@PathVariable String id) {
-        return ResponseEntity.ok(formularioService.buscarPorId(id));
+
+    @GetMapping("/buscarCracha/{cracha}")
+    public ResponseEntity<List<FormularioResponseDTO>> buscarCracha(@PathVariable String cracha) {
+        return ResponseEntity.ok(formularioService.buscarPorCracha(cracha));
     }
 
     @PostMapping("/inserir")
