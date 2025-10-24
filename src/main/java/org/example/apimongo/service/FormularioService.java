@@ -73,8 +73,8 @@ public class FormularioService {
                 .collect(Collectors.toList());
     }
 
-    public List<FormularioResponseDTO> buscarPorId(String id) {
-        return formularioRepository.findById(id)
+    public List<FormularioResponseDTO> buscarPorCracha(String numeroCracha) {
+        return formularioRepository.findByNumeroCracha(numeroCracha)
                 .stream()
                 .map(this::toResponseDTO)
                 .collect(Collectors.toList());
