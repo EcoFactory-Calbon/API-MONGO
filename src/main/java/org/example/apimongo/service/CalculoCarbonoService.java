@@ -55,7 +55,7 @@ public class CalculoCarbonoService {
             case "consumo": return 0.7;
             case "energia": return 0.8;
             case "conhecimento": return 0.2;
-            default: return 1.0;
+            default: return 0.0;
         }
     }
 
